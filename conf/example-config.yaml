@@ -1,0 +1,20 @@
+## Example YAML configuration for use with confire. All settings are
+## stored as YAML, with YAML types. Put your actual config in your search
+## path, as you defined it your Configuration subclass. The default search
+## path is as follows:
+##
+##  - /etc/app.yaml
+##  - ~/.app.yaml
+##  - ./app.yaml
+
+## Set application environment
+debug:   True
+testing: False
+
+## A simple database configuration
+database:
+    name: mydb
+    host: localhost
+    port: 5432
+    user: postgres
+    password: ""
