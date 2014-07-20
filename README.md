@@ -1,11 +1,13 @@
 # Confire #
-[![Build Status][build_status_img]][build_status_page] [![PyPi version][pypi_version_img]][pypi_version] [![PyPi downloads][pypi_downloads_img]][pypi_downloads] [![Stories in Ready][waffle_img]][waffle_status] 
+[![Build Status][build_status_img]][build_status_page] [![PyPi version][pypi_version_img]][pypi_version] [![PyPi downloads][pypi_downloads_img]][pypi_downloads] [![Stories in Ready][waffle_img]][waffle_status]
 
 **A simple app configuration scheme using YAML and class based defaults.**
 
 [![Confire][confire.jpg]][confire.jpg]
 
 Confire is a simple but powerful configuration scheme that builds on the configuration parsers of Scapy, elasticsearch, Django and others. The basic scheme is to have a configuration search path that looks for YAML files in standard locations. The search path is hierarchical (meaning that system configurations are overloaded by user configurations, etc). These YAML files are then added to a default, class-based configuration management scheme that allows for easy development.
+
+Full documentation can be found here: [http://confire.readthedocs.org/](http://confire.readthedocs.org/)
 
 ## Features ##
 
@@ -39,33 +41,33 @@ In your code, create a file called "config.py" and add the following:
 
     import os
     from confire import Configuration
-    
+
     class DatabaseConfiguration(Configuration):
-    
+
         host = "localhost"
         port = 5432
         name = "mydb"
         user = "postgres"
         password = os.environ.get("DATABASE_PASSWORD", "")
-    
+
     class MyAppConfiguration(Configuration):
-    
+
         CONF_PATHS = [
             '/etc/myapp.yaml',
             os.path.expanduser('~/.myapp.yaml')
             os.path.abspath('conf/myapp.yaml)
         ]
-    
+
         debug    = False
         testing  = True
         database = DatabaseConfiguration()
-        
+
     settings = MyAppConfiguration.load()
-    
+
 Now, everywhere in your code that you would like to access these settings values, simply use as follows:
 
     from config import settings
-    
+
     debug = settings.get('DEBUG') or settings['DEBUG']
 
 Voila! A complete configuration system for your application!
@@ -86,9 +88,9 @@ As always, I highly recommend the use of a virtual environment to better manage 
 There are many configuration packages available on PyPI - it seems that everyone has a different way of doing it. However, this is my prefered way, and I found that after I copy and pasted this code into more than 3 projects that it was time to add it as a dependency via PyPI. The configuration builds on what I've learned/done in configuring Scapy, elasticsearch, and Django - and builds on these principles:
 
 1. Configuration _should not_ be Python (sorry Django). It's too easy to screw stuff up, and anyway, you don't want to deal with importing a settings file from /etc!
-2. Configuration should be on a per-system basis. This means that there should be an /etc/app.yaml configuration file as well as a $HOME/.app.yaml configuration file that overwrites the system defaults for a particular user. For development purposes there should also be a $(pwd)/app.yaml file so that you don't have to sprinkle things throughout the system if not needed. 
+2. Configuration should be on a per-system basis. This means that there should be an /etc/app.yaml configuration file as well as a $HOME/.app.yaml configuration file that overwrites the system defaults for a particular user. For development purposes there should also be a $(pwd)/app.yaml file so that you don't have to sprinkle things throughout the system if not needed.
 3. Developers should be able to have reasonable defaults already written in code if no YAML file has been provided. These defaults should be added in an API like way that is class based and modularized.
-4. Accessing settings from the code should be easy. 
+4. Accessing settings from the code should be easy.
 
 So there you have it, with these things in mind I wrote confire and I hope you enjoy it!
 
