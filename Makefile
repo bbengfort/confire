@@ -17,7 +17,7 @@ clean:
 	-rm -rf .coverage
 	-rm -rf build
 	-rm -rf dist
-	-rm -rf $(PROJECT)/*.egg-info
+	-rm -rf $(PROJECT).egg-info
 
 # Targets for Coruscate testing
 test:
