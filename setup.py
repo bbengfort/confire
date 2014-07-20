@@ -59,7 +59,7 @@ config = {
     "author": "Benjamin Bengfort",
     "author_email": "benjamin@bengfort.com",
     "url": "https://github.com/bbengfort/confire",
-    "download_url" = 'https://github.com/bbengfort/confire/tarball/v0.1.0'
+    "download_url": 'https://github.com/bbengfort/confire/tarball/v0.1.0',
     "packages": packages,
     "install_requires": requires,
     "classifiers": classifiers,
