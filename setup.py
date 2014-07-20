@@ -18,6 +18,8 @@ Setup script for science-bookclub
 ## Imports
 ##########################################################################
 
+import os
+
 try:
     from setuptools import setup
     from setuptools import find_packages
@@ -29,8 +31,10 @@ except ImportError:
 ## Package Information
 ##########################################################################
 
-packages = find_packages(where=".", exclude=("tests", "bin", "docs", "fixtures",))
+packages = find_packages(where=".", exclude=("tests", "bin", "docs", "fixtures", "register",))
 requires = []
+
+print packages
 
 with open('requirements.txt', 'r') as reqfile:
     for line in reqfile:
@@ -51,10 +55,16 @@ classifiers = (
 
 keywords = ('configuration', 'yaml', 'config', 'confire')
 
+long_description = "Confire is a simple but powerful configuration scheme that builds on the configuration parsers of Scapy, elasticsearch, Django and others. The basic scheme is to have a configuration search path that looks for YAML files in standard locations. The search path is hierarchical (meaning that system configurations are overloaded by user configurations, etc). These YAML files are then added to a default, class-based configuration management scheme that allows for easy development."
+if os.path.exists('README.rst'):
+    with open('README.rst', 'r') as readme:
+        long_description = readme.read()
+
 config = {
     "name": "confire",
     "version": "0.1.0",
     "description": "A simple app configuration scheme using YAML and class based defaults.",
+    "long_description": long_description,
     "license": "MIT",
     "author": "Benjamin Bengfort",
     "author_email": "benjamin@bengfort.com",
