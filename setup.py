@@ -55,7 +55,7 @@ classifiers = (
 
 keywords = ('configuration', 'yaml', 'config', 'confire')
 
-long_description = "Confire is a simple but powerful configuration scheme that builds on the configuration parsers of Scapy, elasticsearch, Django and others. The basic scheme is to have a configuration search path that looks for YAML files in standard locations. The search path is hierarchical (meaning that system configurations are overloaded by user configurations, etc). These YAML files are then added to a default, class-based configuration management scheme that allows for easy development."
+long_description = "Confire is a simple but powerful configuration scheme that builds on the configuration parsers of Scapy, elasticsearch, Django and others. The basic scheme is to have a configuration search path that looks for YAML files in standard locations. The search path is hierarchical (meaning that system configurations are overloaded by user configurations, etc). These YAML files are then added to a default, class-based configuration management scheme that allows for easy development.\n\nDocumentation is available here: http://confire.readthedocs.org/en/latest/"
 
 config = {
     "name": "confire",

@@ -79,9 +79,9 @@ class Configuration(object):
     """
 
     CONF_PATHS = [
-        '/etc/app.yaml',                    # The global configuration
-        os.path.expanduser('~/.app.yaml'),  # User specific configuration
-        os.path.abspath('conf/app.yaml')    # Local directory configuration
+        '/etc/confire.yaml',                    # The global configuration
+        os.path.expanduser('~/.confire.yaml'),  # User specific configuration
+        os.path.abspath('conf/confire.yaml')    # Local directory configuration
     ]
 
     @classmethod
@@ -168,41 +168,3 @@ class Configuration(object):
                 r = r[:wlen-3]+"..."
             s += "%-10s = %s\n" % (opt, r)
         return s[:-1]
-
-##########################################################################
-## Default Configurations
-##########################################################################
-
-class DatabaseConfiguration(Configuration):
-    """
-    This object contains the default connections to the Mongo Database.
-    """
-    host            = "localhost"
-    port            = 5432
-    database        = "app"
-    user            = "postgres"
-    password        = os.environ.get("DATABASE_PASSWORD")
-
-##########################################################################
-## Confire Configuration Defaults
-##########################################################################
-
-class ExampleConfiguration(Configuration):
-    """
-    This object contains an example configuration.
-
-    debug: allow debug checking
-    testing: are we in testing mode?
-    """
-    debug           = True
-    testing         = False
-    database        = DatabaseConfiguration()
-
-##########################################################################
-## Import this loaded Configuration
-##########################################################################
-
-settings = ExampleConfiguration.load()
-
-if __name__ == '__main__':
-    print settings
