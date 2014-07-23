@@ -17,4 +17,4 @@ A simple app configuration scheme using YAML and class based defaults.
 ## Imports
 ##########################################################################
 
-from config import Configuration
+from .config import Configuration
