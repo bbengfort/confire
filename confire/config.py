@@ -113,7 +113,7 @@ class Configuration(object):
         for key in keys:
             opt = self.get(key, None)
             if isinstance(opt, Configuration):
-                opt.configure(conf.pop(key))
+                opt.configure(conf.get(key))
         self.__dict__.update(conf)
 
     def options(self):
@@ -123,12 +123,12 @@ class Configuration(object):
         """
         keys = self.__class__.__dict__.copy()
         keys.update(self.__dict__)
-        keys = keys.keys()
-        keys.sort()
+        keys = sorted(keys.keys())
 
         for opt in keys:
             val = self.get(opt)
-            if val is not None: yield opt, val
+            if val is not None:
+                yield opt, val
 
     def get(self, key, default=None):
         """
