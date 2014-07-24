@@ -61,14 +61,14 @@ long_description = "Confire is a simple but powerful configuration scheme that b
 
 config = {
     "name": "confire",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "A simple app configuration scheme using YAML and class based defaults.",
     "long_description": long_description,
     "license": "MIT",
     "author": "Benjamin Bengfort",
     "author_email": "benjamin@bengfort.com",
     "url": "https://github.com/bbengfort/confire",
-    "download_url": 'https://github.com/bbengfort/confire/tarball/v0.1.0',
+    "download_url": 'https://github.com/bbengfort/confire/tarball/v0.1.1',
     "packages": packages,
     "install_requires": requires,
     "classifiers": classifiers,
