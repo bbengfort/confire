@@ -43,7 +43,7 @@ import yaml
 import warnings
 
 from copy import deepcopy
-from exceptions import ImproperlyConfigured, ConfigurationMissing
+from .exceptions import ImproperlyConfigured, ConfigurationMissing
 
 ##########################################################################
 ## Environment helper function
