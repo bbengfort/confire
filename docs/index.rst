@@ -44,8 +44,7 @@ In your code, create a file called "config.py" and add the following:
 
 .. code-block :: python
 
-   import os
-   from confire import Configuration
+   from confire import Configuration, environ_setting
 
    class DatabaseConfiguration(Configuration):
 
@@ -53,7 +52,7 @@ In your code, create a file called "config.py" and add the following:
        port = 5432
        name = "mydb"
        user = "postgres"
-       password = os.environ.get("DATABASE_PASSWORD", "")
+       password = environ_setting("DATABASE_PASSWORD", required=False)
 
    class MyAppConfiguration(Configuration):
 
@@ -117,9 +116,7 @@ Confire is open source, and I would be happy to have you contribute! You can con
 2. Add issues or bugs on the bugtracker: https://github.com/bbengfort/confire/issues
 3. Checkout the current dev board on waffle.io: https://waffle.io/bbengfort/confire
 
-You can contact me on Twitter if needed: `@bbengfort`_
-
-.. _@bbengfort: (https://twitter.com/bbengfort)
+You can contact me on Twitter if needed: `@bbengfort <https://twitter.com/bbengfort>`_
 
 Name Origin
 ~~~~~~~~~~~
@@ -142,6 +139,15 @@ The release versions that are sent to the Python package index are also tagged i
 
 The versioning uses a three part version system, "a.b.c" - "a" represents a major release that may not be backwards compatible. "b" is incremented on minor releases that may contain extra features, but are backwards compatible. "c" releases are bugfixes or other micro changes that developers should feel free to immediately update to.
 
+v0.2.0 not yet released
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* **tag**: v0.2.0
+* **deployment**: --
+* **commit**: --
+
+This release will add some new features including support for environmental variables as settings defaults, ConfigurationMissing Warnings and ImproperlyConfigured errors that you can raise in your own code to warn developers about the state of configuration.
+
 v0.1.1 released on 24 July 2014
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -149,7 +155,7 @@ v0.1.1 released on 24 July 2014
 * **deployment**: July 24, 2014
 * **commit**: --
 
-Added Python 3.3 support thanks to [@tyrannosaurus](https://github.com/tyrannosaurus) who contributed to the changes that would ensure this support for the future. I also added Python 3.3 travis testing and some other minor changes.
+Added Python 3.3 support thanks to `@tyrannosaurus <https://github.com/tyrannosaurus>`_ who contributed to the changes that would ensure this support for the future. I also added Python 3.3 travis testing and some other minor changes.
 
 v0.1.0 released on 20 July 2014
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

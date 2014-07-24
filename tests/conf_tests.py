@@ -31,6 +31,12 @@ from copy import copy
 from confire.config import *
 
 ##########################################################################
+## Environment setting on Import
+##########################################################################
+
+os.environ['TESTING_CONFIRE_PASSWORD'] = 'password'
+
+##########################################################################
 ## Configuration Unit Tests
 ##########################################################################
 
@@ -40,7 +46,8 @@ class ConfigurationTests(unittest.TestCase):
         "myprop": "Allen",
         "mysetting": False,
         "items": ["apples", "bananas", "oranges"],
-        "nested": {"level": "floor", "empty": ["full",]}
+        "nested": {"level": "floor", "empty": ["full",]},
+        "password": "knockknock"
     }
 
     def setUp(self):
@@ -51,9 +58,14 @@ class ConfigurationTests(unittest.TestCase):
         with open(self.config_file, "w") as conf:
             yaml.dump(self.FIXTURE, conf, default_flow_style=False)
 
+        os.environ['TESTING_CONFIRE_PASSWORD'] = 'password'
+
     def tearDown(self):
         Configuration.CONF_PATHS = self.original_conf_paths
         os.remove(self.config_file)
+
+        os.environ.pop('TESTING_CONFIRE_PASSWORD')
+        assert 'TESTING_CONFIRE_PASSWORD' not in os.environ
 
     def test_search_path(self):
         """
@@ -137,6 +149,22 @@ class ConfigurationTests(unittest.TestCase):
         self.assertEqual(config.get('nested').get('level'), 'lobby')
         self.assertEqual(config.get('nested').get('nested').get('level'), 'basement')
 
+    def test_environ_configuration(self):
+        """
+        Test the environ setting on a config
+        """
+        config = TestConfiguration.load()
+        self.assertEqual('password', config.get('password'))
+
+    def test_settings_file_environ_override(self):
+        """
+        Test that the settings file overrides the environ
+        """
+        Configuration.CONF_PATHS.append(self.config_file)
+
+        config = TestConfiguration.load()
+        self.assertEqual('knockknock', config.get('password'))
+
     def test_options(self):
         """
         Test the options method
@@ -219,6 +247,7 @@ class TestConfiguration(Configuration):
     anoption  = 42
     paththere = "/var/log/there.pth"
     nested    = NestedConfiguration()
+    password  = environ_setting('TESTING_CONFIRE_PASSWORD')
 
     def amethod(self):
         return True

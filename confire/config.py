@@ -40,8 +40,33 @@ dictionary-like access.
 
 import os
 import yaml
+import warnings
 
 from copy import deepcopy
+from exceptions import ImproperlyConfigured, ConfigurationMissing
+
+##########################################################################
+## Environment helper function
+##########################################################################
+
+def environ_setting(name, default=None, required=True):
+    """
+    Fetch setting from the environment. The bahavior of the setting if it
+    is not in environment is as follows:
+
+        1. If it is required and the default is None, raise Exception
+        2. If it is requried and a default exists, return default
+        3. If it is not required and default is None, return  None
+        4. If it is not required and default exists, return default
+    """
+    if name not in os.environ and default is None:
+        message = "The {0} ENVVAR is not set.".format(name)
+        if required:
+            raise ImproperlyConfigured(message)
+        else:
+            warnings.warn(ConfigurationMissing(message))
+
+    return os.environ.get(name, default)
 
 ##########################################################################
 ## Configuration Base Class

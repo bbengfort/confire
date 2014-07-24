@@ -39,8 +39,7 @@ Create some configuration values inside the file like so:
 
 In your code, create a file called "config.py" and add the following:
 
-    import os
-    from confire import Configuration
+    from confire import Configuration, environ_setting
 
     class DatabaseConfiguration(Configuration):
 
@@ -48,7 +47,7 @@ In your code, create a file called "config.py" and add the following:
         port = 5432
         name = "mydb"
         user = "postgres"
-        password = os.environ.get("DATABASE_PASSWORD", "")
+        password = environ_setting("DATABASE_PASSWORD", required=False)
 
     class MyAppConfiguration(Configuration):
 
@@ -71,6 +70,12 @@ Now, everywhere in your code that you would like to access these settings values
     debug = settings.get('DEBUG') or settings['DEBUG']
 
 Voila! A complete configuration system for your application!
+
+### A note on environment variables ###
+
+Confire is setup to enable the use of environment variables, especially if you use the helper `environ_setting` method that comes with Confire. Just note, however, that a settings file will always override the Environment, not the other way around! Sensitive values should never be placed in a settings file anyway, but rather added to the environment at run time.
+
+The `environ_setting` alows you to specify required or optional settings to fetch from the ENVIRONMENT as defaults. It also allows you to specify a default if the ENVVAR is not there. See the documentation for more details.
 
 ## Setup ##
 
@@ -120,6 +125,17 @@ I like cooking, and the thought of preparation in French culinary language appea
 The release versions that are sent to the Python package index are also tagged in Github. You can see the tags through the Github web application and download the tarball of the version you'd like. Additionally PyPI will host the various releases of confire.
 
 The versioning uses a three part version system, "a.b.c" - "a" represents a major release that may not be backwards compatible. "b" is incremented on minor releases that may contain extra features, but are backwards compatible. "c" releases are bugfixes or other micro changes that developers should feel free to immediately update to.
+
+### v0.2.0 not yet released ###
+
+* **tag**: v0.2.0
+* **deployment**: --
+* **commit**: --
+
+This release will add some new features including support for environmental variables as settings defaults, ConfigurationMissing Warnings and ImproperlyConfigured errors that you can raise in your own code to warn developers about the state of configuration.
+
+TODO:
+    - Document the new features
 
 ### v0.1.1 released on 24 July 2014 ###
 
