@@ -142,6 +142,15 @@ The release versions that are sent to the Python package index are also tagged i
 
 The versioning uses a three part version system, "a.b.c" - "a" represents a major release that may not be backwards compatible. "b" is incremented on minor releases that may contain extra features, but are backwards compatible. "c" releases are bugfixes or other micro changes that developers should feel free to immediately update to.
 
+v0.1.1 released on 24 July 2014
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* **tag**: v0.1.1
+* **deployment**: July 24, 2014
+* **commit**: --
+
+Added Python 3.3 support thanks to [@tyrannosaurus](https://github.com/tyrannosaurus) who contributed to the changes that would ensure this support for the future. I also added Python 3.3 travis testing and some other minor changes.
+
 v0.1.0 released on 20 July 2014
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
