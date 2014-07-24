@@ -2,10 +2,10 @@ language: python
 python:
   - '2.7'
   - '3.3'
-install: pip install -r requirements.txt --use-mirrors
-before-script: 
-    - pip install nose
-    - pip install coverage
+before_install:
+  - pip install nose
+  - pip install coverage
+install: pip install -r requirements.txt
 script: make test
 notifications:
   email:
