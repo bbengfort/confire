@@ -39,7 +39,8 @@ Create some configuration values inside the file like so:
 
 In your code, create a file called "config.py" and add the following:
 
-    from confire import Configuration, environ_setting
+    from confire import Configuration
+    #from confire import environ_setting (not until v0.2.0)
 
     class DatabaseConfiguration(Configuration):
 
@@ -53,8 +54,8 @@ In your code, create a file called "config.py" and add the following:
 
         CONF_PATHS = [
             '/etc/myapp.yaml',
-            os.path.expanduser('~/.myapp.yaml')
-            os.path.abspath('conf/myapp.yaml)
+            os.path.expanduser('~/.myapp.yaml'),
+            os.path.abspath('conf/myapp.yaml')
         ]
 
         debug    = False
