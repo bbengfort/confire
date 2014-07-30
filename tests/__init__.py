@@ -39,3 +39,10 @@ class InitializationTest(unittest.TestCase):
             import confire
         except ImportError:
             self.fail("Unable to import the confire module!")
+
+    def test_version(self):
+        """
+        Assert that the version is sane
+        """
+        import confire
+        self.assertEqual("0.2.0", confire.get_version())

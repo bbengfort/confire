@@ -24,4 +24,10 @@ from .exceptions import ImproperlyConfigured
 ## Package constants
 ##########################################################################
 
-__version__ = "0.2.0"
+__version__ = (0, 2, 0)
+
+def get_version():
+    """
+    Returns a string containing the version number
+    """
+    return ".".join("%i" % idx for idx in __version__)
