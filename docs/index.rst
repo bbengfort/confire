@@ -16,6 +16,23 @@ Features
 - Class based application defaults
 - Settings pulled in from the environment
 
+Setup
+-----
+
+The easiest and usual way to install confire is to use pip:
+
+.. code-block :: bash
+
+   pip install confire
+
+To install the package from source, download the latests package tarball, unzip in a temporary directory and run the following command:
+
+.. code-block :: bash
+
+   python setup.py install
+
+As always, I highly recommend the use of a virtual environment to better manage the software dependencies for your particular code base.
+
 Example Usage
 -------------
 
@@ -45,7 +62,7 @@ In your code, create a file called "config.py" and add the following:
 .. code-block :: python
 
    from confire import Configuration
-   #from confire import environ_setting (only in v0.2.0)
+   from confire import environ_setting
 
    class DatabaseConfiguration(Configuration):
 
@@ -79,25 +96,21 @@ Now, everywhere in your code that you would like to access these settings values
 
 Voila! A complete configuration system for your application!
 
-Setup
------
+Next Topics
+===========
 
-The easiest and usual way to install confire is to use pip:
+Here are a list of topics for more detail about how to use confire in your Python applications.
 
-.. code-block :: bash
+.. toctree::
+   :maxdepth: 1
+   :glob:
 
-   pip install confire
-
-To install the package from source, download the latests package tarball, unzip in a temporary directory and run the following command:
-
-.. code-block :: bash
-
-   python setup.py install
-
-As always, I highly recommend the use of a virtual environment to better manage the software dependencies for your particular code base.
+   usage
+   library
+   changelog
 
 About
------
+=====
 
 There are many configuration packages available on PyPI - it seems that everyone has a different way of doing it. However, this is my prefered way, and I found that after I copy and pasted this code into more than 3 projects that it was time to add it as a dependency via PyPI. The configuration builds on what I've learned/done in configuring Scapy, elasticsearch, and Django - and builds on these principles:
 
@@ -109,7 +122,7 @@ There are many configuration packages available on PyPI - it seems that everyone
 So there you have it, with these things in mind I wrote confire and I hope you enjoy it!
 
 Contributing
-~~~~~~~~~~~~
+------------
 
 Confire is open source, and I would be happy to have you contribute! You can contribute in the following ways:
 
@@ -120,7 +133,14 @@ Confire is open source, and I would be happy to have you contribute! You can con
 You can contact me on Twitter if needed: `@bbengfort <https://twitter.com/bbengfort>`_
 
 Name Origin
-~~~~~~~~~~~
+-----------
+
+.. figure :: /figures/confits.jpg
+    :width: 696px
+    :alt: French Chefs preparing Confit
+
+    French Chefs preparing Confit
+
 .. raw :: html
 
     con &middot; fit<br />
@@ -133,42 +153,8 @@ Name Origin
 
 I like cooking, and the thought of preparation in French culinary language appealed to me. The way I got here was to simply change the "g" in config to a "t". A definition lookup and boom, a name!
 
-Changelog
----------
-
-The release versions that are sent to the Python package index are also tagged in Github. You can see the tags through the Github web application and download the tarball of the version you'd like. Additionally PyPI will host the various releases of confire.
-
-The versioning uses a three part version system, "a.b.c" - "a" represents a major release that may not be backwards compatible. "b" is incremented on minor releases that may contain extra features, but are backwards compatible. "c" releases are bugfixes or other micro changes that developers should feel free to immediately update to.
-
-v0.2.0 not yet released
-~~~~~~~~~~~~~~~~~~~~~~~
-
-* **tag**: v0.2.0
-* **deployment**: --
-* **commit**: --
-
-This release will add some new features including support for environmental variables as settings defaults, ConfigurationMissing Warnings and ImproperlyConfigured errors that you can raise in your own code to warn developers about the state of configuration.
-
-v0.1.1 released on 24 July 2014
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* **tag**: v0.1.1
-* **deployment**: July 24, 2014
-* **commit**: --
-
-Added Python 3.3 support thanks to `@tyrannosaurus <https://github.com/tyrannosaurus>`_ who contributed to the changes that would ensure this support for the future. I also added Python 3.3 travis testing and some other minor changes.
-
-v0.1.0 released on 20 July 2014
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* **tag**: v0.1.0
-* **deployment**: July 20, 2014
-* **comit**: --
-
-Initial deployment of the confire library.
-
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`

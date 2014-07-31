@@ -40,7 +40,7 @@ Create some configuration values inside the file like so:
 In your code, create a file called "config.py" and add the following:
 
     from confire import Configuration
-    #from confire import environ_setting (not until v0.2.0)
+    from confire import environ_setting
 
     class DatabaseConfiguration(Configuration):
 
@@ -127,11 +127,11 @@ The release versions that are sent to the Python package index are also tagged i
 
 The versioning uses a three part version system, "a.b.c" - "a" represents a major release that may not be backwards compatible. "b" is incremented on minor releases that may contain extra features, but are backwards compatible. "c" releases are bugfixes or other micro changes that developers should feel free to immediately update to.
 
-### v0.2.0 not yet released ###
+### v0.2.0 released on 31 July 2014 ###
 
 * **tag**: v0.2.0
-* **deployment**: --
-* **commit**: --
+* **deployment**: July 30, 2014
+* **commit**: (latest)
 
 This release will add some new features including support for environmental variables as settings defaults, ConfigurationMissing Warnings and ImproperlyConfigured errors that you can raise in your own code to warn developers about the state of configuration.
 
@@ -142,7 +142,7 @@ TODO:
 
 * **tag**: v0.1.1
 * **deployment**: July 24, 2014
-* **commit**: --
+* **commit**: bdc0488
 
 Added Python 3.3 support thanks to [@tyrannosaurus](https://github.com/tyrannosaurus) who contributed to the changes that would ensure this support for the future. I also added Python 3.3 travis testing and some other minor changes.
 
@@ -150,7 +150,7 @@ Added Python 3.3 support thanks to [@tyrannosaurus](https://github.com/tyrannosa
 
 * **tag**: v0.1.0
 * **deployment**: July 20, 2014
-* **comit**: --
+* **comit**: 213aa5e
 
 Initial deployment of the confire library.
 

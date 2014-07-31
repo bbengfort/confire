@@ -26,6 +26,10 @@ from .exceptions import ImproperlyConfigured
 
 __version__ = (0, 2, 0)
 
+##########################################################################
+## Package helpers
+##########################################################################
+
 def get_version():
     """
     Returns a string containing the version number
