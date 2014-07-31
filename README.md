@@ -130,7 +130,7 @@ The versioning uses a three part version system, "a.b.c" - "a" represents a majo
 ### v0.2.0 released on 31 July 2014 ###
 
 * **tag**: v0.2.0
-* **deployment**: July 30, 2014
+* **deployment**: July 31, 2014
 * **commit**: (latest)
 
 This release will add some new features including support for environmental variables as settings defaults, ConfigurationMissing Warnings and ImproperlyConfigured errors that you can raise in your own code to warn developers about the state of configuration.
