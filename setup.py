@@ -18,9 +18,6 @@ Setup script for science-bookclub
 ## Imports
 ##########################################################################
 
-import os
-import confire
-
 try:
     from setuptools import setup
     from setuptools import find_packages
@@ -66,7 +63,7 @@ long_description = "Confire is a simple but powerful configuration scheme that b
 ## Define the configuration
 config = {
     "name": "confire",
-    "version": confire.get_version(),
+    "version": "0.2.0",
     "description": "A simple app configuration scheme using YAML and class based defaults.",
     "long_description": long_description,
     "license": "MIT",
