@@ -135,8 +135,7 @@ The versioning uses a three part version system, "a.b.c" - "a" represents a majo
 
 This release will add some new features including support for environmental variables as settings defaults, ConfigurationMissing Warnings and ImproperlyConfigured errors that you can raise in your own code to warn developers about the state of configuration.
 
-TODO:
-    - Document the new features
+This release also greatly increased the amount of available documentation for Confire.
 
 ### v0.1.1 released on 24 July 2014 ###
 
