@@ -160,7 +160,7 @@ Initial deployment of the confire library.
 [build_status_page]: https://travis-ci.org/bbengfort/confire
 [confire.jpg]: http://upload.wikimedia.org/wikipedia/commons/d/d4/Picholines_et_Olives_Nyons.jpg
 [pypi_version]: https://crate.io/packages/confire/
-[pypi_version_img]: https://pypip.in/version/confire/badge.png
+[pypi_version_img]: https://pypip.in/v/confire/badge.png
 [pypi_downloads]: https://crate.io/packages/confire/
 [pypi_downloads_img]: https://pypip.in/d/confire/badge.png
 [waffle_img]: https://badge.waffle.io/bbengfort/confire.png?label=ready&title=Ready
