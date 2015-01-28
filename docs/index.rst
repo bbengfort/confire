@@ -61,6 +61,7 @@ In your code, create a file called "config.py" and add the following:
 
 .. code-block :: python
 
+   import os
    from confire import Configuration
    from confire import environ_setting
 

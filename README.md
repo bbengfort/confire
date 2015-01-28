@@ -39,6 +39,7 @@ Create some configuration values inside the file like so:
 
 In your code, create a file called "config.py" and add the following:
 
+    import os
     from confire import Configuration
     from confire import environ_setting
 
