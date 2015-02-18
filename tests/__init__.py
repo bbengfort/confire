@@ -20,6 +20,12 @@ Testing for the confire module
 import unittest
 
 ##########################################################################
+## Module Constants
+##########################################################################
+
+TEST_VERSION = "0.2.1" ## Also the expected version onf the package
+
+##########################################################################
 ## Test Cases
 ##########################################################################
 
@@ -45,4 +51,4 @@ class InitializationTest(unittest.TestCase):
         Assert that the version is sane
         """
         import confire
-        self.assertEqual("0.2.0", confire.get_version())
+        self.assertEqual(TEST_VERSION, confire.__version__)

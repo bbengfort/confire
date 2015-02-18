@@ -1,1 +1,9 @@
+## Confire requirements
 PyYAML==3.11
+
+## Testing requirements
+#coverage==3.7.1
+#nose==1.3.3
+
+## Added by virtualenv
+#wsgiref==0.1.2

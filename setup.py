@@ -5,13 +5,13 @@
 # Author:   Benjamin Bengfort <benjamin@bengfort.com>
 # Created:  Sun Jul 20 11:06:56 2014 -0400
 #
-# Copyright (C) 2014 District Data Labs
-# For license information, see LICENSE.txt and NOTICE.md
+# Copyright (C) 2014-2015 Benjamin Bengfort
+# For license information, see LICENSE.txt
 #
 # ID: setup.py [] benjamin@bengfort.com $
 
 """
-Setup script for science-bookclub
+Setup script for confire
 """
 
 ##########################################################################
@@ -28,6 +28,8 @@ except ImportError:
 ##########################################################################
 ## Package Information
 ##########################################################################
+
+version  = __import__('confire').__version__
 
 ## Discover the packages
 packages = find_packages(where=".", exclude=("tests", "bin", "docs", "fixtures", "register",))
@@ -63,14 +65,14 @@ long_description = "Confire is a simple but powerful configuration scheme that b
 ## Define the configuration
 config = {
     "name": "confire",
-    "version": "0.2.0",
+    "version": version,
     "description": "A simple app configuration scheme using YAML and class based defaults.",
     "long_description": long_description,
     "license": "MIT",
     "author": "Benjamin Bengfort",
     "author_email": "benjamin@bengfort.com",
     "url": "https://github.com/bbengfort/confire",
-    "download_url": 'https://github.com/bbengfort/confire/tarball/v0.2.0',
+    "download_url": 'https://github.com/bbengfort/confire/tarball/v%s' % version,
     "packages": packages,
     "install_requires": requires,
     "classifiers": classifiers,
