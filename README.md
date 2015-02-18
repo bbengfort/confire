@@ -26,50 +26,57 @@ Create a file called "myapp.yaml" and place it in one of the following places:
 
 Create some configuration values inside the file like so:
 
-    ## Set application environment
-    debug:   True
-    testing: False
+```yaml
+## Set application environment
+debug:   True
+testing: False
 
-    ## A simple database configuration
-    database:
-        name: mydb
-        host: localhost
-        port: 5432
-        user: postgres
+## A simple database configuration
+database:
+    name: mydb
+    host: localhost
+    port: 5432
+    user: postgres
+```
 
 In your code, create a file called "config.py" and add the following:
 
-    import os
-    from confire import Configuration
-    from confire import environ_setting
+```python
+import os
+from confire import Configuration
+from confire import environ_setting
 
-    class DatabaseConfiguration(Configuration):
+class DatabaseConfiguration(Configuration):
 
-        host = "localhost"
-        port = 5432
-        name = "mydb"
-        user = "postgres"
-        password = environ_setting("DATABASE_PASSWORD", required=False)
+    host = "localhost"
+    port = 5432
+    name = "mydb"
+    user = "postgres"
+    password = environ_setting("DATABASE_PASSWORD", required=False)
 
-    class MyAppConfiguration(Configuration):
+class MyAppConfiguration(Configuration):
 
-        CONF_PATHS = [
-            '/etc/myapp.yaml',
-            os.path.expanduser('~/.myapp.yaml'),
-            os.path.abspath('conf/myapp.yaml')
-        ]
+    CONF_PATHS = [
+        '/etc/myapp.yaml',
+        os.path.expanduser('~/.myapp.yaml'),
+        os.path.abspath('conf/myapp.yaml')
+    ]
 
-        debug    = False
-        testing  = True
-        database = DatabaseConfiguration()
+    debug    = False
+    testing  = True
+    database = DatabaseConfiguration()
 
-    settings = MyAppConfiguration.load()
+
+settings = MyAppConfiguration.load()
+```
 
 Now, everywhere in your code that you would like to access these settings values, simply use as follows:
 
-    from config import settings
+```python
+from config import settings
 
-    debug = settings.get('DEBUG') or settings['DEBUG']
+debug = settings.get('DEBUG') or settings['DEBUG']
+```
 
 Voila! A complete configuration system for your application!
 
@@ -83,11 +90,15 @@ The `environ_setting` alows you to specify required or optional settings to fetc
 
 The easiest and usual way to install confire is to use pip:
 
-    pip install confire
+```bash
+~$ pip install confire
+```
 
 To install the package from source, download the latests package tarball, unzip in a temporary directory and run the following command:
 
-    python setup.py install
+```bash
+~$ python setup.py install
+```
 
 As always, I highly recommend the use of a virtual environment to better manage the software dependencies for your particular code base.
 
@@ -128,11 +139,19 @@ The release versions that are sent to the Python package index are also tagged i
 
 The versioning uses a three part version system, "a.b.c" - "a" represents a major release that may not be backwards compatible. "b" is incremented on minor releases that may contain extra features, but are backwards compatible. "c" releases are bugfixes or other micro changes that developers should feel free to immediately update to.
 
+### v0.2.1 pending release ###
+
+* **tag**: v0.2.1
+* **deployment**: pending
+* **commit**: (latest)
+
+So far this release has done some package maintenance, for example using a version methodology that I've written about at District Data Labs. Confire continues to work and perform with the latest releases of Python and the PyYAML dependency, so only minor bugfixes will be in this release.
+
 ### v0.2.0 released on 31 July 2014 ###
 
 * **tag**: v0.2.0
 * **deployment**: July 31, 2014
-* **commit**: (latest)
+* **commit**: 9167120
 
 This release will add some new features including support for environmental variables as settings defaults, ConfigurationMissing Warnings and ImproperlyConfigured errors that you can raise in your own code to warn developers about the state of configuration.
 
