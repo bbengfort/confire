@@ -178,8 +178,6 @@ Added Python 3.3 support thanks to [@tyrannosaurus](https://github.com/tyrannosa
 
 Initial deployment of the confire library.
 
-[![PyPI version]()]()
-
 <!-- References -->
 [build_status_img]: https://travis-ci.org/bbengfort/confire.svg?branch=master
 [build_status_page]: https://travis-ci.org/bbengfort/confire
