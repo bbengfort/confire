@@ -178,17 +178,19 @@ Added Python 3.3 support thanks to [@tyrannosaurus](https://github.com/tyrannosa
 
 Initial deployment of the confire library.
 
+[![PyPI version]()]()
+
 <!-- References -->
 [build_status_img]: https://travis-ci.org/bbengfort/confire.svg?branch=master
 [build_status_page]: https://travis-ci.org/bbengfort/confire
-[coveralls_img]: https://coveralls.io/repos/bbengfort/confire/badge.svg
-[coveralls_page]: https://coveralls.io/r/bbengfort/confire
+[coveralls_img]: https://coveralls.io/repos/bbengfort/confire/badge.svg?branch=master
+[coveralls_page]: https://coveralls.io/r/bbengfort/confire?branch=master
 [rtd_img]: https://readthedocs.org/projects/confire/badge/?version=latest
 [rtd_page]: https://readthedocs.org/projects/confire/?badge=latest
 [confire.jpg]: http://upload.wikimedia.org/wikipedia/commons/d/d4/Picholines_et_Olives_Nyons.jpg
-[pypi_version]: https://crate.io/packages/confire/
-[pypi_version_img]: https://pypip.in/v/confire/badge.png
-[pypi_downloads]: https://crate.io/packages/confire/
-[pypi_downloads_img]: https://pypip.in/d/confire/badge.png
+[pypi_version]: http://badge.fury.io/py/confire
+[pypi_version_img]: https://badge.fury.io/py/confire.svg
+[pypi_downloads]: https://pypi.python.org/pypi/confire/0.2.0
+[pypi_downloads_img]: https://img.shields.io/pypi/dm/confire.svg
 [waffle_img]: https://badge.waffle.io/bbengfort/confire.png?label=ready&title=Ready
 [waffle_status]: https://waffle.io/bbengfort/confire
