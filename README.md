@@ -1,5 +1,10 @@
 # Confire #
-[![Build Status][build_status_img]][build_status_page] [![PyPi version][pypi_version_img]][pypi_version] [![PyPi downloads][pypi_downloads_img]][pypi_downloads] [![Stories in Ready][waffle_img]][waffle_status]
+[![Build Status][build_status_img]][build_status_page]
+[![Coverage Status][coveralls_img]][coveralls_page]
+[![PyPi version][pypi_version_img]][pypi_version]
+[![PyPi downloads][pypi_downloads_img]][pypi_downloads]
+[![Stories in Ready][waffle_img]][waffle_status]
+[![Documentation Status][rtd_img]][rtd_page]
 
 **A simple app configuration scheme using YAML and class based defaults.**
 
@@ -173,10 +178,13 @@ Added Python 3.3 support thanks to [@tyrannosaurus](https://github.com/tyrannosa
 
 Initial deployment of the confire library.
 
-
 <!-- References -->
 [build_status_img]: https://travis-ci.org/bbengfort/confire.svg?branch=master
 [build_status_page]: https://travis-ci.org/bbengfort/confire
+[coveralls_img]: https://coveralls.io/repos/bbengfort/confire/badge.svg
+[coveralls_page]: https://coveralls.io/r/bbengfort/confire
+[rtd_img]: https://readthedocs.org/projects/confire/badge/?version=latest
+[rtd_page]: https://readthedocs.org/projects/confire/?badge=latest
 [confire.jpg]: http://upload.wikimedia.org/wikipedia/commons/d/d4/Picholines_et_Olives_Nyons.jpg
 [pypi_version]: https://crate.io/packages/confire/
 [pypi_version_img]: https://pypip.in/v/confire/badge.png
