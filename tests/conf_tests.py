@@ -46,8 +46,9 @@ class ConfigurationTests(unittest.TestCase):
         "myprop": "Allen",
         "mysetting": False,
         "items": ["apples", "bananas", "oranges"],
-        "nested": {"level": "floor", "empty": ["full",]},
-        "password": "knockknock"
+        "nested": {"level": "floor", "empty": ["full",], "nested_path":"/tmp/"},
+        "password": "knockknock",
+        "myfile": "~/tmp/data.txt",
     }
 
     def setUp(self):
@@ -87,12 +88,15 @@ class ConfigurationTests(unittest.TestCase):
         Assert config can load from YAML
         """
         Configuration.CONF_PATHS.append(self.config_file)
+        with warnings.catch_warnings():
+            # There will be warnings, just ignore them
+            warnings.simplefilter("ignore")
+            config = TestConfiguration.load()
 
-        config = TestConfiguration.load()
-        self.assertIsNotNone(config.get('myprop'))
-        self.assertEqual(config.get('myprop'), "Allen")
-        self.assertTrue(isinstance(config.get('nested'), NestedConfiguration))
-        self.assertEqual(config.get("nested").get("level"), "floor")
+            self.assertIsNotNone(config.get('myprop'))
+            self.assertEqual(config.get('myprop'), "Allen")
+            self.assertTrue(isinstance(config.get('nested'), NestedConfiguration))
+            self.assertEqual(config.get("nested").get("level"), "floor")
 
     def test_load_override(self):
         """
@@ -116,16 +120,20 @@ class ConfigurationTests(unittest.TestCase):
         """
         Check configuration by other configuration
         """
-        configa = TestConfiguration.load()
-        configb = TestConfiguration.load()
+        with warnings.catch_warnings():
+            # There will be warnings, just ignore them
+            warnings.simplefilter("ignore")
 
-        self.assertEqual(configa["anoption"], configb["anoption"])
+            configa = TestConfiguration.load()
+            configb = TestConfiguration.load()
 
-        configa.anoption = 80
-        self.assertNotEqual(configa["anoption"], configb["anoption"])
+            self.assertEqual(configa["anoption"], configb["anoption"])
 
-        configb.configure(configa)
-        self.assertEqual(configa["anoption"], configb["anoption"])
+            configa.anoption = 80
+            self.assertNotEqual(configa["anoption"], configb["anoption"])
+
+            configb.configure(configa)
+            self.assertEqual(configa["anoption"], configb["anoption"])
 
     def test_configure_with_none(self):
         """
@@ -164,6 +172,43 @@ class ConfigurationTests(unittest.TestCase):
 
         config = TestConfiguration.load()
         self.assertEqual('knockknock', config.get('password'))
+
+    def test_path_configuration(self):
+        """
+        Test the path setting on a config
+        """
+        config = TestConfiguration.load()
+        with self.assertRaises(ImproperlyConfigured):
+            path = config.myfile
+
+        with warnings.catch_warnings():
+            # There will be warnings, just ignore them
+            warnings.simplefilter("ignore")
+
+            self.assertEqual('/tmp/data/', config.datadir)
+
+    def test_settings_file_path_configuration(self):
+        """
+        Test the paths loaded from the settings file
+        """
+        with warnings.catch_warnings():
+            # There will be warnings, just ignore them
+            warnings.simplefilter("ignore")
+
+            Configuration.CONF_PATHS.append(self.config_file)
+            config = TestConfiguration.load()
+            self.assertEqual(os.path.expanduser('~/tmp/data.txt'), config.myfile)
+            self.assertEqual('/tmp/data/', config.datadir)
+
+    def test_nested_path(self):
+        """
+        Tested nested path configuration
+        """
+        Configuration.CONF_PATHS.append(self.config_file)
+        config = TestConfiguration.load()
+        self.assertEqual(config.nested.nested_path, '/tmp')
+        self.assertEqual(config['nested']['nested_path'], '/tmp')
+        self.assertEqual(config['NESTED']['NESTED_PATH'], '/tmp')
 
     def test_options(self):
         """
@@ -234,6 +279,7 @@ class NestedConfiguration(Configuration):
 
     level  = 1
     empty  = []
+    nested_path = path_setting(raises=False, required=False)
     nested = SubNestedConfiguration()
 
 class TestConfiguration(Configuration):
@@ -248,6 +294,8 @@ class TestConfiguration(Configuration):
     paththere = "/var/log/there.pth"
     nested    = NestedConfiguration()
     password  = environ_setting('TESTING_CONFIRE_PASSWORD')
+    myfile    = path_setting(raises=False)
+    datadir   = path_setting(default='/tmp/data/', raises=False)
 
     def amethod(self):
         return True

@@ -83,7 +83,10 @@ class EnvironTests(unittest.TestCase):
         Test that None is returned on not required
         """
         FAKEKEY = 'MISSING_SETTING'
-        self.assertIsNone(environ_setting(FAKEKEY, required=False))
+        with warnings.catch_warnings():
+            # Ignore the missing warning
+            warnings.simplefilter("ignore")
+            self.assertIsNone(environ_setting(FAKEKEY, required=False))
 
     def test_enivron_default_other(self):
         """

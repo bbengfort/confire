@@ -19,7 +19,7 @@ have a configuration library at your fingertips!
 ##########################################################################
 
 import os
-from confire import Configuration
+from confire import Configuration, environ_setting, path_setting
 
 ##########################################################################
 ## Database Configuration
@@ -34,7 +34,7 @@ class DatabaseConfiguration(Configuration):
     port            = 5432
     database        = "app"
     user            = "postgres"
-    password        = os.environ.get("DATABASE_PASSWORD")
+    password        = environ_setting("DATABASE_PASSWORD", "")
 
 ##########################################################################
 ## Confire Configuration Defaults
@@ -58,6 +58,7 @@ class ExampleConfiguration(Configuration):
     debug           = True
     testing         = False
     database        = DatabaseConfiguration()
+    datadir         = path_setting(raises=False, required=False)
 
 ##########################################################################
 ## Import this loaded Configuration
