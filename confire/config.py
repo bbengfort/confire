@@ -75,7 +75,7 @@ def environ_setting(name, default=None, required=True):
 ## Paths helper function
 ##########################################################################
 
-def path_setting(default=None, absolute=True, mkdirs=False, raises=True):
+def path_setting(**kwargs):
     """
     Helper function to enable the configuration of paths on the local file
     system. By default, this function manages strings in the YAML file:
@@ -89,7 +89,7 @@ def path_setting(default=None, absolute=True, mkdirs=False, raises=True):
     does not exist. If raises is True, then it will raise an exception if the
     directory does not exist.
     """
-    return Path(default, absolute, mkdirs, raises)
+    return Path(**kwargs)
 
 ##########################################################################
 ## Configuration Base Class
@@ -163,7 +163,7 @@ class Configuration(object):
             if isinstance(opt, Configuration):
                 opt.configure(value)
             else:
-                self.__dict__[key] = value
+                setattr(self, key, value)
 
     def options(self):
         """
