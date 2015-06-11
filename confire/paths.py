@@ -21,13 +21,14 @@ import os
 import warnings
 
 from weakref import WeakKeyDictionary
+from .descriptors import SettingsDescriptor
 from .exceptions import ImproperlyConfigured, PathNotFound
 
 ##########################################################################
 ## Path descriptor
 ##########################################################################
 
-class Path(object):
+class Path(SettingsDescriptor):
     """
     Descriptor that enables the configuration of paths on the local file
     system. By default, the descriptor manages strings on set as follows:
@@ -44,7 +45,7 @@ class Path(object):
     """
 
     def __init__(self, default=None, absolute=True, mkdirs=False, raises=True, required=True):
-        self.label     = "confire path" # TODO: Implement SettingsDescriptor
+        self.label     = None
 
         # Configuration of the descriptor
         self.default   = default     # If path is  None
