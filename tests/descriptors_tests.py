@@ -117,3 +117,17 @@ class DescriptorTests(unittest.TestCase):
         obj = BadTestObject()
         with self.assertRaises(TypeError):
             del obj.test_setting
+
+    def test_subclass_with_metaclass(self):
+        """
+        Ensure that subclasses also have metaclass
+        """
+
+        class SubTestObject(TestObject):
+
+            subtest_setting = SettingsDescriptor()
+
+        self.assertIsNotNone(SubTestObject.test_setting.label)
+        self.assertEqual(SubTestObject.test_setting.label, "test_setting")
+        self.assertIsNotNone(SubTestObject.subtest_setting.label)
+        self.assertEqual(SubTestObject.subtest_setting.label, "subtest_setting")
