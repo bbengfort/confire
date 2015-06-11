@@ -45,6 +45,7 @@ import warnings
 from copy import deepcopy
 
 from .paths import Path
+from .descriptors import SettingsMeta
 from .exceptions import ImproperlyConfigured, ConfigurationMissing
 
 ##########################################################################
@@ -124,6 +125,8 @@ class Configuration(object):
 
     Note: None settings are not allowed!
     """
+
+    __metaclass__ = SettingsMeta
 
     CONF_PATHS = [
         '/etc/confire.yaml',                    # The global configuration
