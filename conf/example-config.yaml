@@ -10,6 +10,7 @@
 ## Set application environment
 debug:   True
 testing: False
+datadir: ~/path/to/data/
 
 ## A simple database configuration
 database:
