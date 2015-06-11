@@ -43,6 +43,8 @@ import yaml
 import warnings
 
 from copy import deepcopy
+
+from .paths import Path
 from .exceptions import ImproperlyConfigured, ConfigurationMissing
 
 ##########################################################################
@@ -67,6 +69,26 @@ def environ_setting(name, default=None, required=True):
             warnings.warn(ConfigurationMissing(message))
 
     return os.environ.get(name, default)
+
+##########################################################################
+## Paths helper function
+##########################################################################
+
+def path_setting(default=None, absolute=True, mkdirs=False, raises=True):
+    """
+    Helper function to enable the configuration of paths on the local file
+    system. By default, this function manages strings in the YAML file:
+
+        1. Expand user (e.g. ~)
+        2. Expand vars (e.g. $HOME)
+        3. Normalize the path (e.g. .. and . resolution)
+        4. If absolute, return the absolute path
+
+    If mkdirs is True, then this function will create the directory if it
+    does not exist. If raises is True, then it will raise an exception if the
+    directory does not exist.
+    """
+    return Path(default, absolute, mkdirs, raises)
 
 ##########################################################################
 ## Configuration Base Class

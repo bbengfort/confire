@@ -44,3 +44,9 @@ class ConfigurationMissing(ConfireWarning):
     Warn the user that an optional configuration is missing.
     """
     pass
+
+class PathNotFound(ConfireWarning):
+    """
+    Warn the user that the specified path does not exist.
+    """
+    pass
