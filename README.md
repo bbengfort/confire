@@ -117,7 +117,18 @@ There are many configuration packages available on PyPI - it seems that everyone
 
 So there you have it, with these things in mind I wrote confire and I hope you enjoy it!
 
-### Contributing ###
+### Name Origin ###
+<big>con &middot; fit</big><br />
+/kôNˈfē/<br/>
+*noun* duck or other meat cooked slowly in its own fat.
+
+Origin<br />
+[French] *confire*: to prepare<br />
+Also refers to the culinary art of pickling
+
+I like cooking, and the thought of preparation in French culinary language appealed to me. The way I got here was to simply change the "g" in config to a "t". A definition lookup and boom, a name!
+
+## Contributing ##
 
 Confire is open source, and I would be happy to have you contribute! You can contribute in the following ways:
 
@@ -127,16 +138,36 @@ Confire is open source, and I would be happy to have you contribute! You can con
 
 You can contact me on Twitter if needed: [@bbengfort](https://twitter.com/bbengfort)
 
-### Name Origin ###
-<big>con &middot; fit</big><br />
-/kôNˈfē/<br/>
-*noun* duck or other meat cooked slowly in its own fat.
 
-Origin<br />
-[French] *confire*: to prepare<br \>
-Also refers to the culinary art of pickling
+### Development
 
-I like cooking, and the thought of preparation in French culinary language appealed to me. The way I got here was to simply change the "g" in config to a "t". A definition lookup and boom, a name!
+Development on this project is set up in a typical production/release/development cycle as described in _[A Successful Git Branching Model](http://nvie.com/posts/a-successful-git-branching-model/)_. A typical workflow is as follows:
+
+1. Fork and clone the confire library into your own Github account
+
+2. Select a card from the [waffle dev board](https://waffle.io/bbengfort/confire) - preferably one that is "ready" then move it to "in-progress".
+
+3. Checkout the develop branch to begin development
+
+        $ git fetch
+        $ git checkout develop
+
+4. Create a branch off of develop called "feature-[feature name]", work and commit into that branch.
+
+        $ git checkout -b feature-myfeature develop
+
+5. Once you are done working (and everything is tested) merge your feature into develop.
+
+        $ git checkout develop
+        $ git merge --no-ff feature-myfeature
+        $ git branch -d feature-myfeature
+        $ git push origin develop
+
+6. Repeat steps 4-5 until you are ready to submit your changes. Readiness should include tests that work (pull requests will require Travis tests to pass), as well as some documentation.
+
+7. Submit a pull request back to the main confire library, to the develop branch.
+
+8. Releases will be routinely pushed into master via release branches, then deployed to PyPi - the master branch should reflect the latest release.
 
 ## Changelog ##
 
