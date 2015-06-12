@@ -43,6 +43,7 @@ import yaml
 import warnings
 
 from copy import deepcopy
+from six import with_metaclass
 
 from .paths import Path
 from .descriptors import SettingsMeta
@@ -95,7 +96,7 @@ def path_setting(**kwargs):
 ## Configuration Base Class
 ##########################################################################
 
-class Configuration(object):
+class Configuration(with_metaclass(SettingsMeta, object)):
     """
     Base configuration class specifies how configurations should be
     handled and provides helper methods for iterating through options and
@@ -125,8 +126,6 @@ class Configuration(object):
 
     Note: None settings are not allowed!
     """
-
-    __metaclass__ = SettingsMeta
 
     CONF_PATHS = [
         '/etc/confire.yaml',                    # The global configuration
