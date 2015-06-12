@@ -23,9 +23,9 @@ import warnings
 import unittest
 import tempfile
 
-from six import with_metaclass
 from confire.paths import Path
 from confire import path_setting
+from six import with_metaclass, string_types
 from confire.descriptors import SettingsMeta
 from confire.exceptions import ImproperlyConfigured, PathNotFound
 
@@ -136,7 +136,7 @@ class PathsTests(unittest.TestCase):
         Check that the path descriptor can be fetched from the class
         """
         self.assertTrue(isinstance(TestObject.default_path, Path))
-        self.assertTrue(isinstance(self.obj.default_path, basestring))
+        self.assertTrue(isinstance(self.obj.default_path, string_types))
 
     def test_set_and_get_paths(self):
         """
