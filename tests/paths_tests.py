@@ -23,8 +23,9 @@ import warnings
 import unittest
 import tempfile
 
-from confire import path_setting
+from six import with_metaclass
 from confire.paths import Path
+from confire import path_setting
 from confire.descriptors import SettingsMeta
 from confire.exceptions import ImproperlyConfigured, PathNotFound
 
@@ -63,21 +64,21 @@ def tearDownModule():
 ## Mock configuration object
 ##########################################################################
 
-class TestObject(object):
+class TestObject(with_metaclass(SettingsMeta, object)):
     """
     Tests an object that has Path descriptors set on the class.
     """
 
     __metaclass__ = SettingsMeta
 
-    standard_path     = Path()
-    default_path      = Path(TESTDIR)
-    not_required_path = Path(required=False)
-    mkdirs_path       = Path(mkdirs=True)
-    mk_no_raise_path  = Path(mkdirs=True, raises=False)
-    dont_raise_path   = Path(raises=False)
-    not_absolute      = Path(absolute=False, raises=False)
-    silent_path       = Path(raises=False, required=False)
+    standard_path     = path_setting()
+    default_path      = path_setting(default=TESTDIR)
+    not_required_path = path_setting(required=False)
+    mkdirs_path       = path_setting(mkdirs=True)
+    mk_no_raise_path  = path_setting(mkdirs=True, raises=False)
+    dont_raise_path   = path_setting(raises=False)
+    not_absolute      = path_setting(absolute=False, raises=False)
+    silent_path       = path_setting(raises=False, required=False)
 
 
 ##########################################################################

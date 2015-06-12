@@ -19,15 +19,14 @@ Implements a base SettingsDescriptor for advanced configurations
 
 import unittest
 
+from six import with_metaclass
 from confire.descriptors import SettingsDescriptor, SettingsMeta
 
 ##########################################################################
 ## Mock Objects for Testing
 ##########################################################################
 
-class TestObject(object):
-
-    __metaclass__ = SettingsMeta
+class TestObject(with_metaclass(SettingsMeta, object)):
 
     test_setting = SettingsDescriptor()
 
