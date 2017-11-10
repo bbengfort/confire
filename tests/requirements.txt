@@ -1,0 +1,10 @@
+## Testing Requirements
+apipkg==1.4
+coverage==4.4.2
+execnet==1.5.0
+py==1.4.34
+pyflakes==1.6.0
+pytest-cache==1.0
+pytest-cov==2.5.1
+pytest-flakes==2.0.0
+pytest==3.2.3

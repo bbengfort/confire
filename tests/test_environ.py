@@ -18,43 +18,48 @@ Tests the environment configuration ability
 ##########################################################################
 
 import os
-import warnings
-import unittest
+import pytest
 
 from confire import environ_setting
 from confire.exceptions import ImproperlyConfigured, ConfigurationMissing
+
+
+##########################################################################
+## Fixtures
+##########################################################################
+
+ENVKEY = 'TEST_SETTING'
+ENVVAL = '42'
+
+@pytest.fixture(scope='function')
+def environ():
+    os.environ[ENVKEY] = ENVVAL
+    yield
+    os.environ.pop(ENVKEY)
+    assert ENVKEY not in os.environ
+
 
 ##########################################################################
 ## Test case
 ##########################################################################
 
-class EnvironTests(unittest.TestCase):
+class TestEnviron(object):
 
-    ENVKEY = 'TEST_SETTING'
-    ENVVAL = '42'
-
-    def setUp(self):
-        os.environ[self.ENVKEY] = self.ENVVAL
-
-    def tearDown(self):
-        os.environ.pop(self.ENVKEY)
-        assert self.ENVKEY not in os.environ
-
-    def test_environ_setting(self):
+    def test_environ_setting(self, environ):
         """
         Test settings can be grabbed from environment
         """
-        self.assertEqual(self.ENVVAL, environ_setting(self.ENVKEY))
-        self.assertEqual(self.ENVVAL, environ_setting(self.ENVKEY, default='15'))
-        self.assertEqual(self.ENVVAL, environ_setting(self.ENVKEY, required=False))
-        self.assertEqual(self.ENVVAL, environ_setting(self.ENVKEY, default='15', required=False))
+        assert ENVVAL == environ_setting(ENVKEY)
+        assert ENVVAL == environ_setting(ENVKEY, default='15')
+        assert ENVVAL == environ_setting(ENVKEY, required=False)
+        assert ENVVAL == environ_setting(ENVKEY, default='15', required=False)
 
     def test_improperly_configured(self):
         """
         Test that ImproperlyConfigured is raised on missing setting
         """
         FAKEKEY = 'MISSING_SETTING'
-        with self.assertRaises(ImproperlyConfigured):
+        with pytest.raises(ImproperlyConfigured):
             environ_setting(FAKEKEY)
 
     def test_configuration_missing(self):
@@ -62,35 +67,27 @@ class EnvironTests(unittest.TestCase):
         Test that ConfigurationMissing is warned on missing setting
         """
         FAKEKEY = 'MISSING_SETTING'
-        with warnings.catch_warnings(record=True) as w:
-            # Cause all warnings to always be triggered.
-            warnings.simplefilter("always")
-            # Trigger a warning.
+        with pytest.warns(ConfigurationMissing):
             environ_setting(FAKEKEY, required=False)
-            # Verify some things
-            assert len(w) == 1
-            assert issubclass(w[-1].category, ConfigurationMissing)
 
     def test_environ_default(self):
         """
         Test that a default is returned on required
         """
         FAKEKEY = 'MISSING_SETTING'
-        self.assertEqual('15', environ_setting(FAKEKEY, default='15'))
+        assert environ_setting(FAKEKEY, default='15') == '15'
 
+    @pytest.mark.filterwarnings("ignore")
     def test_environ_default_none(self):
         """
         Test that None is returned on not required
         """
         FAKEKEY = 'MISSING_SETTING'
-        with warnings.catch_warnings():
-            # Ignore the missing warning
-            warnings.simplefilter("ignore")
-            self.assertIsNone(environ_setting(FAKEKEY, required=False))
+        assert environ_setting(FAKEKEY, required=False) is None
 
     def test_enivron_default_other(self):
         """
         Test that a default is returned on not required
         """
         FAKEKEY = 'MISSING_SETTING'
-        self.assertEqual('15', environ_setting(FAKEKEY, required=False, default='15'))
+        assert environ_setting(FAKEKEY, required=False, default='15') == '15'

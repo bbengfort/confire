@@ -17,104 +17,105 @@ Implements a base SettingsDescriptor for advanced configurations
 ## Imports
 ##########################################################################
 
-import unittest
+import pytest
 
 from six import with_metaclass
 from confire.descriptors import SettingsDescriptor, SettingsMeta
+
 
 ##########################################################################
 ## Mock Objects for Testing
 ##########################################################################
 
-class TestObject(with_metaclass(SettingsMeta, object)):
+class MockObject(with_metaclass(SettingsMeta, object)):
 
     test_setting = SettingsDescriptor()
 
 
-class BadTestObject(object):
+class BadMockObject(object):
     """
     Missing metaclass!
     """
 
     test_setting = SettingsDescriptor()
 
+
 ##########################################################################
-## Test Case
+## Test Cases
 ##########################################################################
 
-
-class DescriptorTests(unittest.TestCase):
+class TestDescriptors(object):
 
     def test_label(self):
         """
         Assert that descriptor label is not None
         """
-        self.assertIsNotNone(TestObject.test_setting.label)
-        self.assertEqual(TestObject.test_setting.label, "test_setting")
+        assert MockObject.test_setting.label is not None
+        assert MockObject.test_setting.label == "test_setting"
 
     def test_descriptor_set_get(self):
         """
         Test that the descriptor can be set and fetched
         """
-        obj = TestObject()
-        self.assertIsNone(obj.test_setting)
+        obj = MockObject()
+        assert obj.test_setting is None
         obj.test_setting = "foo"
-        self.assertEqual(obj.test_setting, "foo")
+        assert obj.test_setting == "foo"
 
     def test_descriptor_set_get_dict(self):
         """
         Test that the descriptor is in the instance dict
         """
-        obj = TestObject()
-        self.assertIsNone(obj.__dict__.get('test_setting'))
+        obj = MockObject()
+        assert obj.__dict__.get('test_setting') is None
         obj.test_setting = "foo"
-        self.assertEqual(obj.__dict__.get('test_setting'), "foo")
+        assert obj.__dict__.get('test_setting') == "foo"
 
     def test_descriptor_del(self):
         """
         Test that the descriptor can be deleted
         """
 
-        obj = TestObject()
-        self.assertIsNone(obj.test_setting)
+        obj = MockObject()
+        assert obj.test_setting is None
         obj.test_setting = "foo"
-        self.assertIsNotNone(obj.test_setting)
+        assert obj.test_setting is not None
         del obj.test_setting
-        self.assertIsNone(obj.test_setting)
+        assert obj.test_setting is None
 
     def test_descriptor_del_dict(self):
         """
         Test that the descriptor removes information from instance dict
         """
-        obj = TestObject()
-        self.assertIsNone(obj.__dict__.get('test_setting'))
+        obj = MockObject()
+        assert obj.__dict__.get('test_setting') is None
         obj.test_setting = "foo"
-        self.assertIsNotNone(obj.__dict__.get('test_setting'))
+        assert obj.__dict__.get('test_setting') is not None
         del obj.test_setting
-        self.assertNotIn('test_setting', obj.__dict__)
+        assert 'test_setting' not in obj.__dict__
 
     def test_no_metaclass_get(self):
         """
         Test getattr when object doesn't have a metaclass
         """
-        obj = BadTestObject()
-        with self.assertRaises(TypeError):
-            x = obj.test_setting
+        obj = BadMockObject()
+        with pytest.raises(TypeError):
+            obj.test_setting
 
     def test_no_metaclass_set(self):
         """
         Test setattr when object doesn't have a metaclass
         """
-        obj = BadTestObject()
-        with self.assertRaises(TypeError):
+        obj = BadMockObject()
+        with pytest.raises(TypeError):
             obj.test_setting = "foo"
 
-    def test_no_metaclass_get(self):
+    def test_no_metaclass_del(self):
         """
         Test delattr when object doesn't have a metaclass
         """
-        obj = BadTestObject()
-        with self.assertRaises(TypeError):
+        obj = BadMockObject()
+        with pytest.raises(TypeError):
             del obj.test_setting
 
     def test_subclass_with_metaclass(self):
@@ -122,11 +123,11 @@ class DescriptorTests(unittest.TestCase):
         Ensure that subclasses also have metaclass
         """
 
-        class SubTestObject(TestObject):
+        class SubMockObject(MockObject):
 
             subtest_setting = SettingsDescriptor()
 
-        self.assertIsNotNone(SubTestObject.test_setting.label)
-        self.assertEqual(SubTestObject.test_setting.label, "test_setting")
-        self.assertIsNotNone(SubTestObject.subtest_setting.label)
-        self.assertEqual(SubTestObject.subtest_setting.label, "subtest_setting")
+        assert SubMockObject.test_setting.label is not None
+        assert SubMockObject.test_setting.label == "test_setting"
+        assert SubMockObject.subtest_setting.label is not None
+        assert SubMockObject.subtest_setting.label == "subtest_setting"

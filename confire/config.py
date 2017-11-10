@@ -42,7 +42,6 @@ import os
 import yaml
 import warnings
 
-from copy import deepcopy
 from six import with_metaclass
 
 from .paths import Path
@@ -181,12 +180,13 @@ class Configuration(with_metaclass(SettingsMeta, object)):
     def get(self, key, default=None):
         """
         Fetches a key from the configuration without raising a KeyError
-        exception if the key doesn't exist in the config, instead it
-        returns the default (None).
+        exception if the key doesn't exist in the config or
+        ImproperlyConfigured if the key doesn't exist, instead it returns the
+        default (None).
         """
         try:
             return self[key]
-        except KeyError:
+        except (KeyError, ImproperlyConfigured):
             return default
 
     def __getitem__(self, key):
@@ -201,7 +201,10 @@ class Configuration(with_metaclass(SettingsMeta, object)):
             attr = getattr(self, key)
             if not callable(attr) and not key.startswith('_'):
                 return attr
-        raise KeyError("%s has no configuration '%s'" % (self.__class__.__name__, key))
+        raise KeyError(
+            "{} has no configuration '{}'".format(
+            self.__class__.__name__, key
+        ))
 
     def __repr__(self):
         return str(self)

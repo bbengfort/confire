@@ -1,11 +1,19 @@
 ## Confire requirements
-PyYAML==3.11
-six==1.9.0
+PyYAML==3.12
+six==1.11.0
 
-## Testing requirements
-#coverage==3.7.1
-#nose==1.3.3
-#coveralls==0.5
+## Testing/Development requirements
+## Uncomment to contribute or update
+#apipkg==1.4
+#coverage==4.4.2
+#execnet==1.5.0
+#py==1.4.34
+#pyflakes==1.6.0
+#pytest-cache==1.0
+#pytest-cov==2.5.1
+#pytest-flakes==2.0.0
+#pytest==3.2.3
 
 ## Added by virtualenv
-#wsgiref==0.1.2
+#pip==9.0.1
+#setuptools==28.8.0
