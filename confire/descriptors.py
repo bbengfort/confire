@@ -58,7 +58,7 @@ class SettingsDescriptor(object):
                 "Objects that use SettingsDescriptors must use "
                 "the SettingsMeta as their __metaclass__!"
             )
-            
+
         del instance.__dict__[self.label]
 
 ##########################################################################

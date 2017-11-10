@@ -67,4 +67,4 @@ class ExampleConfiguration(Configuration):
 settings = ExampleConfiguration.load()
 
 if __name__ == '__main__':
-    print settings
+    print(settings)

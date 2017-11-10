@@ -1,0 +1,19 @@
+# Support for comments
+# Support for different data types
+myprop: Allen
+mysetting: false
+items:
+  - apples
+  - bananas
+  - oranges
+
+# Support for nested structures
+nested:
+  empty:
+    - full
+  level: floor
+  nested_path: /tmp/
+
+# Support for different ordering
+password: knockknock
+myfile: ~/tmp/data.txt
