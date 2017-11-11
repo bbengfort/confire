@@ -143,7 +143,7 @@ class Configuration(with_metaclass(SettingsMeta, object)):
         for path in klass.CONF_PATHS:
             if os.path.exists(path):
                 with open(path, 'r') as conf:
-                    config.configure(yaml.load(conf))
+                    config.configure(yaml.safe_load(conf))
         return config
 
     def configure(self, conf={}):

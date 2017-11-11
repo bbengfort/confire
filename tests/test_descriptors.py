@@ -1,4 +1,4 @@
-# tests.descriptors_tests
+# tests.test_descriptors
 # Implements a base SettingsDescriptor for advanced configurations
 #
 # Author:   Benjamin Bengfort <benjamin@bengfort.com>
@@ -7,7 +7,7 @@
 # Copyright (C) 2015 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: descriptors_tests.py [] benjamin@bengfort.com $
+# ID: test_descriptors.py [] benjamin@bengfort.com $
 
 """
 Implements a base SettingsDescriptor for advanced configurations

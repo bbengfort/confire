@@ -1,4 +1,4 @@
-# tests.paths_tests
+# tests.test_paths
 # Testing the paths descriptor
 #
 # Author:   Benjamin Bengfort <benjamin@bengfort.com>
@@ -7,7 +7,7 @@
 # Copyright (C) 2014 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: paths_tests.py [] benjamin@bengfort.com $
+# ID: test_paths.py [] benjamin@bengfort.com $
 
 """
 Testing the paths descriptor
