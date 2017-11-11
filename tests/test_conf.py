@@ -1,4 +1,4 @@
-# tests.conf_tests
+# tests.test_conf
 # Testing the configuration module for Confire
 #
 # Author:   Benjamin Bengfort <benjamin@bengfort.com>
@@ -7,7 +7,7 @@
 # Copyright (C) 2014 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: conf_tests.py [] benjamin@bengfort.com $
+# ID: test_conf.py [] benjamin@bengfort.com $
 
 """
 Testing the configuration module for Confire

@@ -1,4 +1,4 @@
-# tests.environ_tests
+# tests.test_environ
 # Tests the environment configuration ability
 #
 # Author:   Benjamin Bengfort <benjamin@bengfort.com>
@@ -7,7 +7,7 @@
 # Copyright (C) 2014 Bengfort.com
 # For license information, see LICENSE.txt
 #
-# ID: environ_tests.py [] benjamin@bengfort.com $
+# ID: test_environ.py [] benjamin@bengfort.com $
 
 """
 Tests the environment configuration ability
