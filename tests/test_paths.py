@@ -35,6 +35,7 @@ from confire.exceptions import ImproperlyConfigured, PathNotFound
 TEMPDIR  = tempfile.mkdtemp('_paths', 'confire_')    # The base temporary directory
 MDROOT   = os.path.join(TEMPDIR, "missing")          # The root of the missing directory, for unlinking
 MISSDIR  = os.path.join(MDROOT, "path", "to", "dir") # A temporary directory that does not exist
+MISSFILE = os.path.join(MISSDIR, "foo.txt")          # A temporary file that does not exist
 VARSDIR  = tempfile.mkdtemp("subdir", dir=TEMPDIR)   # A temporary directory referenced by environment
 TESTDIR  = tempfile.mkdtemp("testdir", dir=TEMPDIR)  # Another temporary directory for testing
 _, TESTFILE = tempfile.mkstemp("test.txt", dir=TEMPDIR) # A temporary file for testing
@@ -303,6 +304,15 @@ class TestPaths():
         assert not os.path.exists(MISSDIR)
         obj.silent_path = MISSDIR
         assert not os.path.exists(MISSDIR)
+
+    def test_mkdirs_file_exists(self, mockobj):
+        """
+        Test that no exception is raised on mkdirs with a filepath
+        """
+        obj, _ = mockobj
+        assert os.path.exists(TESTFILE)
+        obj.mkdirs_path = TESTFILE
+        assert os.path.exists(TESTFILE)
 
     def test_raises_path(self, mockobj):
         """

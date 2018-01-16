@@ -1,4 +1,4 @@
-# Confire #
+# Confire
 [![Build Status][build_status_img]][build_status_page]
 [![Coverage Status][coveralls_img]][coveralls_page]
 [![PyPi version][pypi_version_img]][pypi_version]
@@ -14,14 +14,14 @@ Confire is a simple but powerful configuration scheme that builds on the configu
 
 Full documentation can be found here: [http://confire.readthedocs.org/](http://confire.readthedocs.org/)
 
-## Features ##
+## Features
 
 * Configuration files in YAML
 * Hierarchical configuration search
 * Class based application defaults
 * Settings pulled in from the environment
 
-## Example Usage ##
+## Example Usage
 
 Create a file called "myapp.yaml" and place it in one of the following places:
 
@@ -85,13 +85,13 @@ debug = settings.get('DEBUG') or settings['DEBUG']
 
 Voila! A complete configuration system for your application!
 
-### A note on environment variables ###
+### A note on environment variables
 
 Confire is setup to enable the use of environment variables, especially if you use the helper `environ_setting` method that comes with Confire. Just note, however, that a settings file will always override the Environment, not the other way around! Sensitive values should never be placed in a settings file anyway, but rather added to the environment at run time.
 
 The `environ_setting` alows you to specify required or optional settings to fetch from the ENVIRONMENT as defaults. It also allows you to specify a default if the ENVVAR is not there. See the documentation for more details.
 
-## Setup ##
+## Setup
 
 The easiest and usual way to install confire is to use pip:
 
@@ -107,7 +107,8 @@ To install the package from source, download the latests package tarball, unzip 
 
 As always, I highly recommend the use of a virtual environment to better manage the software dependencies for your particular code base.
 
-## About ##
+## About
+
 There are many configuration packages available on PyPI - it seems that everyone has a different way of doing it. However, this is my prefered way, and I found that after I copy and pasted this code into more than 3 projects that it was time to add it as a dependency via PyPI. The configuration builds on what I've learned/done in configuring Scapy, elasticsearch, and Django - and builds on these principles:
 
 1. Configuration _should not_ be Python (sorry Django). It's too easy to screw stuff up, and anyway, you don't want to deal with importing a settings file from /etc!
@@ -117,7 +118,8 @@ There are many configuration packages available on PyPI - it seems that everyone
 
 So there you have it, with these things in mind I wrote confire and I hope you enjoy it!
 
-### Name Origin ###
+### Name Origin
+
 <big>con &middot; fit</big><br />
 /kôNˈfē/<br/>
 *noun* duck or other meat cooked slowly in its own fat.
@@ -128,7 +130,7 @@ Also refers to the culinary art of pickling
 
 I like cooking, and the thought of preparation in French culinary language appealed to me. The way I got here was to simply change the "g" in config to a "t". A definition lookup and boom, a name!
 
-## Contributing ##
+## Contributing
 
 Confire is open source, and I would be happy to have you contribute! You can contribute in the following ways:
 
@@ -169,7 +171,7 @@ Development on this project is set up in a typical production/release/developmen
 
 8. Releases will be routinely pushed into master via release branches, then deployed to PyPi - the master branch should reflect the latest release.
 
-## Changelog ##
+## Changelog
 
 The release versions that are sent to the Python package index are also tagged in Github. You can see the tags through the Github web application and download the tarball of the version you'd like. Additionally PyPI will host the various releases of confire.
 

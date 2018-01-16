@@ -106,7 +106,7 @@ config = {
     "version": VERSION,
     "description": "A simple app configuration scheme using YAML and class based defaults.",
     "long_description": DESCRIPTION,
-    "license": "MIT",
+    "license": "MIT License",
     "author": "Benjamin Bengfort",
     "author_email": "benjamin@bengfort.com",
     "url": "https://github.com/bbengfort/confire",
