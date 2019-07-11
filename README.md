@@ -3,7 +3,6 @@
 [![Coverage Status][coveralls_img]][coveralls_page]
 [![PyPi version][pypi_version_img]][pypi_version]
 [![PyPi downloads][pypi_downloads_img]][pypi_downloads]
-[![Stories in Ready][waffle_img]][waffle_status]
 [![Documentation Status][rtd_img]][rtd_page]
 
 **A simple app configuration scheme using YAML and class based defaults.**
@@ -170,46 +169,6 @@ Development on this project is set up in a typical production/release/developmen
 7. Submit a pull request back to the main confire library, to the develop branch.
 
 8. Releases will be routinely pushed into master via release branches, then deployed to PyPi - the master branch should reflect the latest release.
-
-## Changelog
-
-The release versions that are sent to the Python package index are also tagged in Github. You can see the tags through the Github web application and download the tarball of the version you'd like. Additionally PyPI will host the various releases of confire.
-
-The versioning uses a three part version system, "a.b.c" - "a" represents a major release that may not be backwards compatible. "b" is incremented on minor releases that may contain extra features, but are backwards compatible. "c" releases are bugfixes or other micro changes that developers should feel free to immediately update to.
-
-### v0.2.1 pending release ###
-
-* **tag**: v0.2.1
-* **deployment**: pending
-* **commit**: (latest)
-
-So far this release has done some package maintenance, for example using a version methodology that I've written about at District Data Labs. Confire continues to work and perform with the latest releases of Python and the PyYAML dependency, so only minor bugfixes will be in this release.
-
-### v0.2.0 released on 31 July 2014 ###
-
-* **tag**: v0.2.0
-* **deployment**: July 31, 2014
-* **commit**: 9167120
-
-This release will add some new features including support for environmental variables as settings defaults, ConfigurationMissing Warnings and ImproperlyConfigured errors that you can raise in your own code to warn developers about the state of configuration.
-
-This release also greatly increased the amount of available documentation for Confire.
-
-### v0.1.1 released on 24 July 2014 ###
-
-* **tag**: v0.1.1
-* **deployment**: July 24, 2014
-* **commit**: bdc0488
-
-Added Python 3.3 support thanks to [@tyrannosaurus](https://github.com/tyrannosaurus) who contributed to the changes that would ensure this support for the future. I also added Python 3.3 travis testing and some other minor changes.
-
-### v0.1.0 released on 20 July 2014 ###
-
-* **tag**: v0.1.0
-* **deployment**: July 20, 2014
-* **comit**: 213aa5e
-
-Initial deployment of the confire library.
 
 <!-- References -->
 [build_status_img]: https://travis-ci.org/bbengfort/confire.svg?branch=master
